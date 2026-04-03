@@ -7,7 +7,7 @@ export interface IFeedback extends Document {
   status: 'New' | 'In Review' | 'Resolved';
   submitterName?: string;
   submitterEmail?: string;
-  // AI fields
+ 
   ai_category?: string;
   ai_sentiment?: 'Positive' | 'Neutral' | 'Negative';
   ai_priority?: number;
@@ -55,7 +55,7 @@ const FeedbackSchema = new Schema<IFeedback>(
       lowercase: true,
       match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please enter a valid email address'],
     },
-    // AI fields — populated after Gemini responds
+    
     ai_category:  { type: String },
     ai_sentiment: { type: String, enum: ['Positive', 'Neutral', 'Negative'] },
     ai_priority:  { type: Number, min: 1, max: 10 },
@@ -66,7 +66,7 @@ const FeedbackSchema = new Schema<IFeedback>(
   { timestamps: true }
 );
 
-// Indexes for query performance
+
 FeedbackSchema.index({ status: 1 });
 FeedbackSchema.index({ category: 1 });
 FeedbackSchema.index({ ai_priority: -1 });

@@ -27,5 +27,5 @@ app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 app.use(errorHandler);
 
 connectDB().then(() => {
-  app.listen(PORT, () => console.log(`🚀  API running on http://localhost:${PORT}`));
+  app.listen(PORT, () => console.log(`API running on http://localhost:${PORT}`));
 });
